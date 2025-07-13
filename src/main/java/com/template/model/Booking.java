@@ -1,24 +1,29 @@
 package com.template.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.template.dto.BookingStatus;
 import com.template.dto.TimeRange;
 
 @Document(collection = "bookings")
 public class Booking {
     @Id
     private String id;
-    private String userId;
+
     private String serviceId;
+    private String userId;
+
     private LocalDate date;
     private TimeRange timeRange;
-    private String status; // PENDING, CONFIRMED, CANCELLED
-    
-    private String statusMessage;
+
+    private BigDecimal price;
+
+    private BookingStatus status; // e.g. CONFIRMED, CANCELLED
 
 
     public Booking() {
@@ -67,20 +72,20 @@ public class Booking {
         this.timeRange = timeRange;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-	public String getStatusMessage() {
-		return statusMessage;
+	public BigDecimal getPrice() {
+		return price;
 	}
 
-	public void setStatusMessage(String statusMessage) {
-		this.statusMessage = statusMessage;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public BookingStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(BookingStatus status) {
+		this.status = status;
 	}
     
 }
