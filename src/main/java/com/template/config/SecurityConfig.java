@@ -55,7 +55,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
 
                         // Restrict bookings to CUSTOMER
-                        .requestMatchers(HttpMethod.POST, "/api/bookings").hasRole("CUSTOMER")
+                        .requestMatchers(HttpMethod.POST, "/api/bookings").hasAnyRole("CUSTOMER","ADMIN")
 
                         // All others require authentication
                         .anyRequest().authenticated())
